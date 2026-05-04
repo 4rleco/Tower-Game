@@ -12,15 +12,9 @@ public class TowerpartLogic : MonoBehaviour
         rigidbody.useGravity = false;
     }
 
-    private void Update()
+    public void Deatach(bool deatach)
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            transform.parent = null;
-
-            rigidbody.useGravity = true;
-
-            enabled = false;
-        }
+        rigidbody.useGravity = deatach;
+        transform.parent = null;
     }
 }

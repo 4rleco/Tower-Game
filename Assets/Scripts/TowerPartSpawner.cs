@@ -3,33 +3,35 @@ using System.Collections.Generic;
 
 public class TowerPartSpawner : MonoBehaviour
 {
-    [SerializeField] private TowerpartLogic towerPartPrefab;
     [SerializeField] private GameObject floor;
 
     [SerializeField] private float speed;
 
-    private List<TowerpartLogic> towerParts;
+    private TowerpartLogic towerPart;
 
     private float maxPosX;
     private float minPosX;
 
     private bool reachedMax = false;
 
-    private void Start()
-    {
-        TowerpartLogic towerPart = Instantiate(towerPartPrefab, transform.position, Quaternion.identity, transform);
-        towerParts.Add(towerPart);
-    }
-
     private void Update()
     {
-        Movement();
+        if (towerPart != null)
+        {
+            Movement(); 
+        }
     }
 
+    public void SpawnTowerPart(TowerpartLogic instantiatedTowerPart)
+    {
+        towerPart = instantiatedTowerPart;
+        towerPart.gameObject.SetActive(true);
+    }
+    
     private void Movement()
     {
-        maxPosX = floor.transform.localScale.x / 2 - towerPartPrefab.transform.localScale.x;
-        minPosX = -1 * (maxPosX = floor.transform.localScale.x / 2 - towerPartPrefab.transform.localScale.x);
+        maxPosX = floor.transform.localScale.x / 2 - towerPart.transform.localScale.x;
+        minPosX = -1 * (maxPosX = floor.transform.localScale.x / 2 - towerPart.transform.localScale.x);
 
         if (transform.position.x <= maxPosX && !reachedMax)
             transform.position += Vector3.right * speed * Time.deltaTime;

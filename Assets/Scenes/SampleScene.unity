@@ -407,6 +407,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &911137448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911137449}
+  - component: {fileID: 911137450}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &911137449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911137448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &911137450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911137448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd8734c32d2cef4183c6315a94a0c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LvlDataManager
+  lvlData:
+  - {fileID: 11400000, guid: fe29993e3b2c628469344772265fa87d, type: 2}
+  towerPartSpawner: {fileID: 589953320330046446}
+--- !u!114 &589953320330046446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3977757426329970888, guid: dfc6881929edc594891de7b41d42738f, type: 3}
+  m_PrefabInstance: {fileID: 2662397174721804509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f1cf0a7b2f4d14e800fa189f605af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerPartSpawner
 --- !u!81 &1340299926039105947
 AudioListener:
   m_ObjectHideFlags: 0
@@ -618,3 +676,4 @@ SceneRoots:
   - {fileID: 273861903}
   - {fileID: 5682910736047193120}
   - {fileID: 2662397174721804509}
+  - {fileID: 911137449}
