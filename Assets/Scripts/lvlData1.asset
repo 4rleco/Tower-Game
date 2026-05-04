@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e343c382e842a44ab532147a1bcd83e, type: 3}
+  m_Name: lvlData1
+  m_EditorClassIdentifier: Assembly-CSharp::LvlData
+  towerpartPrefab: {fileID: 4158221539145496687, guid: 18dd4a802b0b1fb4f873d03fa428dd23, type: 3}
+  <amountOfParts>k__BackingField: 2
