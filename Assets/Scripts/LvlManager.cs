@@ -28,6 +28,7 @@ public class LvlDataManager : MonoBehaviour
         {
             towerParts[0].Deatach(true);
             towerParts.RemoveAt(0);
+
             if (towerParts.Count > 0)
             {
                 towerPartSpawner.SpawnTowerPart(towerParts[0]); 
