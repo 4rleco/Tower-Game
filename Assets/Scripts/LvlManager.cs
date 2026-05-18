@@ -9,6 +9,10 @@ public class LvlDataManager : MonoBehaviour
 
     List<TowerpartLogic> towerParts = new List<TowerpartLogic>();
 
+    private TowerpartLogic currentpart = null;
+
+    private bool towerPartReleased;
+
     private void Start()
     {
         for (int i = 0; i < lvlData[0].amountOfParts; i++)
@@ -26,13 +30,19 @@ public class LvlDataManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            towerParts[0].Deatach(true);
-            towerParts.RemoveAt(0);
-
-            if (towerParts.Count > 0)
+            if (towerParts[0].GetIsSpawned())
             {
-                towerPartSpawner.SpawnTowerPart(towerParts[0]); 
+                towerParts[0].Deatach(true);
+                currentpart = towerParts[0];
+                towerParts.RemoveAt(0);
+                towerPartReleased = true; 
             }
+        }
+
+        if (towerParts.Count > 0 && currentpart.GetIsColliding())
+        {
+            towerPartSpawner.SpawnTowerPart(towerParts[0]);
+            towerPartReleased = false;
         }
     }
 }

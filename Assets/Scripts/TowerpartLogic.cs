@@ -7,10 +7,28 @@ public class TowerpartLogic : MonoBehaviour
     [SerializeField] private Collider collider;
     private Rigidbody rigidbody;
 
+    private bool isSpawned = false;
+    private bool isColliding = false;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
+    }
+
+    private void Start()
+    {
+        isSpawned = true;
+    }
+
+    public bool GetIsSpawned()
+    {
+        return isSpawned;
+    }
+
+    public bool GetIsColliding()
+    {
+        return isColliding;
     }
 
     public void Deatach(bool deatach)
@@ -18,5 +36,12 @@ public class TowerpartLogic : MonoBehaviour
         collider.enabled = true;
         rigidbody.useGravity = deatach;
         transform.parent = null;
+    }
+        }
+        else
+        {
+            //loose condition
+        }
+        isColliding = true;
     }
 }
