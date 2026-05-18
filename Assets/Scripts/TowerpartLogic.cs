@@ -18,6 +18,8 @@ public class TowerpartLogic : MonoBehaviour
 
     private void Start()
     {
+        
+
         isSpawned = true;
     }
 
@@ -37,10 +39,17 @@ public class TowerpartLogic : MonoBehaviour
         rigidbody.useGravity = deatach;
         transform.parent = null;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Tower Top")
+        {
+            gameObject.tag = collision.gameObject.tag;
+            collision.gameObject.tag = "Untagged";
         }
         else
         {
-            //loose condition
+            
         }
         isColliding = true;
     }
