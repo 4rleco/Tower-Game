@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiGamePlay
   panelSettings: {fileID: 771340944}
+  gameOverPanel: {fileID: 824939103}
 --- !u!114 &777042649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,7 +690,7 @@ GameObject:
   - component: {fileID: 824939106}
   - component: {fileID: 824939105}
   m_Layer: 5
-  m_Name: GameOverUi
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

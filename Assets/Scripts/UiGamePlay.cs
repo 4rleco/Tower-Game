@@ -3,13 +3,14 @@ using UnityEngine;
 public class UiGamePlay : MonoBehaviour
 {
     [SerializeField] private GameObject panelSettings;
+    [SerializeField] private GameObject gameOverPanel;
 
     private bool isPaused = false;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.P) ||
-            Input.GetKey(KeyCode.Escape))
+            Input.GetKey(KeyCode.Escape) && !gameOverPanel.activeSelf)
         {
             TogglePause();
         }

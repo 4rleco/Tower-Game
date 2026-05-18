@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameOverUi : MonoBehaviour
+public class GameOverLogic : MonoBehaviour
 {
     [SerializeField] private LvlDataManager lvlDataManager;
     [SerializeField] private GameObject canvas;
