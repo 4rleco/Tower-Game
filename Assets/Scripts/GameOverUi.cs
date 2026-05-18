@@ -1,7 +1,23 @@
-using System;
 using UnityEngine;
 
 public class GameOverUi : MonoBehaviour
 {
-    public event Action<bool> OnGameOver;
+    [SerializeField] private LvlDataManager lvlDataManager;
+    [SerializeField] private GameObject canvas;
+
+    private void Start()
+    {
+        lvlDataManager.OnGameOver += OnGameOver;
+    }
+
+    private void OnDestroy()
+    {
+        lvlDataManager.OnGameOver -= OnGameOver;
+    }
+
+    private void OnGameOver(bool lost)
+    {
+        Time.timeScale = 0;
+        canvas.SetActive(lost);
+    }
 }

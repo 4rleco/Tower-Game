@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d11de92a000bf74f8d36c6693c7d753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverUi
+  towerpartLogic: {fileID: 4158221539145496687, guid: 18dd4a802b0b1fb4f873d03fa428dd23, type: 3}
 --- !u!1 &830389531
 GameObject:
   m_ObjectHideFlags: 0

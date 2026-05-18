@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,6 +11,8 @@ public class TowerpartLogic : MonoBehaviour
     private bool isSpawned = false;
     private bool isColliding = false;
 
+   private bool onFail;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -18,8 +21,6 @@ public class TowerpartLogic : MonoBehaviour
 
     private void Start()
     {
-        
-
         isSpawned = true;
     }
 
@@ -31,6 +32,11 @@ public class TowerpartLogic : MonoBehaviour
     public bool GetIsColliding()
     {
         return isColliding;
+    }
+
+    public bool GetOnFail()
+    {
+        return onFail;
     }
 
     public void Deatach(bool deatach)
@@ -49,7 +55,7 @@ public class TowerpartLogic : MonoBehaviour
         }
         else
         {
-            
+            onFail = true;
         }
         isColliding = true;
     }
