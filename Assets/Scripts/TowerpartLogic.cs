@@ -11,7 +11,7 @@ public class TowerpartLogic : MonoBehaviour
     private bool isSpawned = false;
     private bool isColliding = false;
 
-   private bool onFail;
+   private bool onFail = false;
 
     private void Awake()
     {

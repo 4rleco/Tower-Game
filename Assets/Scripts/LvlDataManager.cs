@@ -12,6 +12,7 @@ public class LvlDataManager : MonoBehaviour
     private TowerpartLogic currentpart = null;
 
     public event Action<bool> OnGameOver;
+    public event Action<bool> OnWinGame;
 
     private void Start()
     {
@@ -44,9 +45,11 @@ public class LvlDataManager : MonoBehaviour
             towerPartSpawner.SpawnTowerPart(towerParts[0]);
         }
 
-        if(currentpart.GetOnFail())
-        {
+        if(currentpart.GetOnFail())        
             OnGameOver?.Invoke(true);
-        }
+        
+
+        if (towerParts.Count <= 0 && currentpart.GetIsColliding() && !currentpart.GetOnFail())
+            OnWinGame?.Invoke(true);
     }
 }
