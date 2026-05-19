@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: lvlData1
   m_EditorClassIdentifier: Assembly-CSharp::LvlData
   towerpartPrefab: {fileID: 4158221539145496687, guid: 18dd4a802b0b1fb4f873d03fa428dd23, type: 3}
-  <amountOfParts>k__BackingField: 2
+  <amountOfParts>k__BackingField: 7

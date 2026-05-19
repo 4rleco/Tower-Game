@@ -13,6 +13,7 @@ public class LvlDataManager : MonoBehaviour
 
     public event Action<bool> OnGameOver;
     public event Action<bool> OnWinGame;
+    public event Action<bool> OnReleased;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class LvlDataManager : MonoBehaviour
             if (towerParts[0].GetIsSpawned())
             {
                 towerParts[0].Deatach(true);
+                OnReleased?.Invoke(true);
                 currentpart = towerParts[0];
                 towerParts.RemoveAt(0);
             }
@@ -43,6 +45,7 @@ public class LvlDataManager : MonoBehaviour
         if (towerParts.Count > 0 && currentpart.GetIsColliding())
         {
             towerPartSpawner.SpawnTowerPart(towerParts[0]);
+            OnReleased?.Invoke(false);
         }
 
         if(currentpart.GetOnFail())        
