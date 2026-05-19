@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class MainCameraLogic : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TowerPartSpawner spawner;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (spawner.GetIsReleased())
+        {                                  // la altura de los cubos
+            transform.position += new Vector3(0.0f, 2.0f, 0.0f) * Time.deltaTime;
+        }
     }
 }

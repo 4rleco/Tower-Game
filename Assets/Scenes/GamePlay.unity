@@ -1329,6 +1329,10 @@ PrefabInstance:
       propertyPath: floor
       value: 
       objectReference: {fileID: 273861899}
+    - target: {fileID: 3977757426329970888, guid: dfc6881929edc594891de7b41d42738f, type: 3}
+      propertyPath: lvlDataManager
+      value: 
+      objectReference: {fileID: 911137450}
     - target: {fileID: 5395637954253798576, guid: dfc6881929edc594891de7b41d42738f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -1388,6 +1392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5682910736047193120}
   - component: {fileID: 6641934969309245797}
+  - component: {fileID: 8302548948930941351}
   - component: {fileID: 1340299926039105947}
   - component: {fileID: 8302548948930941350}
   m_Layer: 0
@@ -1507,6 +1512,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &8302548948930941351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325985447561069588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efeeca6422e44ce47b5766109f0d6292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainCameraLogic
+  spawner: {fileID: 589953320330046446}
+  speed: 10
 --- !u!1001 &9071056495756447765
 PrefabInstance:
   m_ObjectHideFlags: 0
