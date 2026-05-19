@@ -48,9 +48,18 @@ public class LvlDataManager : MonoBehaviour
             OnReleased?.Invoke(false);
         }
 
-        if(currentpart.GetOnFail())        
+        if (currentpart.GetOnFail())
             OnGameOver?.Invoke(true);
-        
+
+        if (!currentpart.GetOnFail())
+        {
+            if (currentpart.GetOnPerfect())
+                score += 200;
+            else
+                score += 100;
+
+            towerHeight += 1;
+        }
 
         if (towerParts.Count <= 0 && currentpart.GetIsColliding() && !currentpart.GetOnFail())
             OnWinGame?.Invoke(true);

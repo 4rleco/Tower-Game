@@ -1,9 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class UiGamePlay : MonoBehaviour
 {
     [SerializeField] private GameObject panelSettings;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private LvlDataManager lvlDataManager;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI towerheight;
 
     private bool isPaused = false;
 
