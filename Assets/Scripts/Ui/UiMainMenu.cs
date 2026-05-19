@@ -11,7 +11,6 @@ public class UiMainMenu : MonoBehaviour
 
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelSettings;
-    [SerializeField] private GameObject panelExit;
 
     private void Awake()
     {
@@ -44,8 +43,8 @@ public class UiMainMenu : MonoBehaviour
 
     private void OnButtonExitClicked()
     {
-        panelExit.SetActive(false);
-        panelSettings.SetActive(true);
+        panelSettings.SetActive(false);
+        Application.Quit();
     }
     
     private void OnRetunrButtonClicked()
