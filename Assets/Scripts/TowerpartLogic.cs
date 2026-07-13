@@ -10,6 +10,9 @@ public class TowerpartLogic : MonoBehaviour
     [SerializeField] private AudioSource partCollision;
 
     private Rigidbody rigidbody;
+    private MeshRenderer meshRenderer;
+
+    private float height;
 
     private bool isSpawned = false;
     private bool isColliding = false;
@@ -21,40 +24,17 @@ public class TowerpartLogic : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
 
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+
         floorCollision.Stop();
         partCollision.Stop();
+
+        height = 1;
     }
 
     private void Start()
     {
         isSpawned = true;
-    }
-
-    public bool GetIsSpawned()
-    {
-        return isSpawned;
-    }
-
-    public bool GetIsColliding()
-    {
-        return isColliding;
-    }
-
-    public bool GetOnFail()
-    {
-        return onFail;
-    }
-
-    public bool GetOnPerfect()
-    {
-        return onPerfect;
-    }
-
-    public void Deatach(bool deatach)
-    {
-        collider.enabled = true;
-        rigidbody.useGravity = deatach;
-        transform.parent = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -85,5 +65,37 @@ public class TowerpartLogic : MonoBehaviour
         }
 
         isColliding = true;
+    }
+
+    public bool GetIsSpawned()
+    {
+        return isSpawned;
+    }
+
+    public bool GetIsColliding()
+    {
+        return isColliding;
+    }
+
+    public bool GetOnFail()
+    {
+        return onFail;
+    }
+
+    public bool GetOnPerfect()
+    {
+        return onPerfect;
+    }
+
+    public void Deatach(bool deatach)
+    {
+        collider.enabled = true;
+        rigidbody.useGravity = deatach;
+        transform.parent = null;
+    }
+
+    public float Height()
+    {
+        return height;
     }
 }

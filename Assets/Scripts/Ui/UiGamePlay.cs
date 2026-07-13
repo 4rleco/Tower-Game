@@ -7,9 +7,6 @@ public class UiGamePlay : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private LvlDataManager lvlDataManager;
 
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI towerHeight;
-
     private bool isPaused = false;
 
     private void Update()

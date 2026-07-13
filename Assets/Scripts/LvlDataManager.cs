@@ -1,57 +1,98 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LvlDataManager : MonoBehaviour
 {
     [SerializeField] private LvlData[] lvlData;
     [SerializeField] private TowerPartSpawner towerPartSpawner;
+    [SerializeField] private TextMeshProUGUI LifesText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI towerHeightText;
+    [SerializeField] private TextMeshProUGUI perfectStreakText;
 
-    List<TowerpartLogic> towerParts = new List<TowerpartLogic>();
+    private TowerpartLogic heldPart;
+    private TowerpartLogic fallingPart;
 
-    private TowerpartLogic currentpart = null;
+    private float lifes;
+    private float score;
+    private int towerHeight;
+    private int perfectStreak;
 
     public event Action<bool> OnGameOver;
-    public event Action<bool> OnWinGame;
     public event Action<bool> OnReleased;
+
+    private bool waitingForLanding;
 
     private void Start()
     {
-        for (int i = 0; i < lvlData[0].amountOfParts; i++)
-        {
-            TowerpartLogic towerPart = Instantiate(lvlData[0].towerpartPrefab, towerPartSpawner.transform);
-            towerPart.gameObject.SetActive(false);
-
-            towerParts.Add(towerPart);
-        }
-
-        towerPartSpawner.SpawnTowerPart(towerParts[0]);
-        currentpart = towerParts[0];
+        lifes = lvlData[0].lifes;
     }
 
     private void Update()
     {
+        LifesText.text = "Lives: " + lifes;
+        scoreText.text = "Score: " + score;
+        towerHeightText.text = "Tower Height: " + towerHeight;
+        perfectStreakText.text = "Perfect Streak: " + perfectStreak;
+
+        if (heldPart == null && !waitingForLanding && lifes > 0)
+        {
+            heldPart = Instantiate(lvlData[0].towerpartPrefab, towerPartSpawner.transform);
+
+            towerPartSpawner.SpawnTowerPart(heldPart);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (towerParts[0].GetIsSpawned())
+            if (heldPart != null && heldPart.GetIsSpawned())
             {
-                towerParts[0].Deatach(true);
+                fallingPart = heldPart;
+                heldPart.Deatach(true);
+                heldPart = null;
+
+                waitingForLanding = true;
+
                 OnReleased?.Invoke(true);
-                currentpart = towerParts[0];
-                towerParts.RemoveAt(0);
             }
         }
 
-        if (towerParts.Count > 0 && currentpart.GetIsColliding())
+        if (fallingPart != null && fallingPart.GetOnFail())
         {
-            towerPartSpawner.SpawnTowerPart(towerParts[0]);
+            lifes--;
+        }
+
+        if (fallingPart != null && waitingForLanding && fallingPart.GetIsColliding())
+        {
+            if (!fallingPart.GetOnFail())
+            {
+                if (fallingPart.GetOnPerfect())
+                {
+                    score += lvlData[0].perfectScore;
+                    perfectStreak++;
+                }
+                else
+                {
+                    score += lvlData[0].score;
+                    perfectStreak = 0;
+                }
+                towerHeight++;
+            }
+
+            fallingPart = null;
+
+            waitingForLanding = false;
+
+
             OnReleased?.Invoke(false);
         }
 
-        if (currentpart.GetOnFail())
-            OnGameOver?.Invoke(true);
 
-        if (towerParts.Count <= 0 && currentpart.GetIsColliding() && !currentpart.GetOnFail())
-            OnWinGame?.Invoke(true);
+        if (lifes <= 0)
+        {
+            OnGameOver?.Invoke(true);
+        }
     }
 }

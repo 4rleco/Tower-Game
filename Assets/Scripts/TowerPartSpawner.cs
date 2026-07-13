@@ -25,7 +25,7 @@ public class TowerPartSpawner : MonoBehaviour
     {
         if (towerPart != null)
         {
-            Movement(); 
+            Movement();
         }
     }
 
@@ -39,7 +39,7 @@ public class TowerPartSpawner : MonoBehaviour
         towerPart = instantiatedTowerPart;
         towerPart.gameObject.SetActive(true);
     }
-    
+
     private void Movement()
     {
         maxPosX = floor.transform.localScale.x / 2 - towerPart.transform.localScale.x;
@@ -64,9 +64,17 @@ public class TowerPartSpawner : MonoBehaviour
     private void OnReleased(bool released)
     {
         isReleased = released;
-        
-        if(isReleased)                     // la altura de los cubos *2
-            transform.position += new Vector3(0.0f, 4.0f, 0.0f) * (upSpeed * Time.deltaTime);
+
+        if (isReleased)
+            transform.position += new Vector3(0, towerPart.Height(), 0);
+    }
+
+    public TowerpartLogic GetTowerpart()
+    {
+        if (towerPart.gameObject.active)
+            return towerPart;
+        else
+            return null;
     }
 
     public bool GetIsReleased()

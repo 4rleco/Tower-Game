@@ -7,8 +7,8 @@ public class MainCameraLogic : MonoBehaviour
     private void Update()
     {
         if (spawner.GetIsReleased())
-        {                                  // la altura de los cubos
-            transform.position += new Vector3(0.0f, 2.0f, 0.0f) * Time.deltaTime;
+        {                                  
+            transform.position += new Vector3(0.0f, spawner.GetTowerpart().Height(), 0.0f) * Time.deltaTime;
         }
     }
 }
