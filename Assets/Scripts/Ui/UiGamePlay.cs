@@ -8,7 +8,7 @@ public class UiGamePlay : MonoBehaviour
     [SerializeField] private LvlDataManager lvlDataManager;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI towerheight;
+    [SerializeField] private TextMeshProUGUI towerHeight;
 
     private bool isPaused = false;
 

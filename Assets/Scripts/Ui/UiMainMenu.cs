@@ -32,6 +32,7 @@ public class UiMainMenu : MonoBehaviour
         buttonSettings.onClick.RemoveAllListeners();
         buttonExit.onClick.RemoveAllListeners();
     }
+
     private void OnButtonPlayClicked()
     {
         Cursor.lockState = CursorLockMode.Locked;
