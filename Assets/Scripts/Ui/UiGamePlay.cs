@@ -14,8 +14,8 @@ public class UiGamePlay : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.P) ||
-            Input.GetKey(KeyCode.Escape) && !gameOverPanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.P) ||
+            Input.GetKeyDown(KeyCode.Escape) && !gameOverPanel.activeSelf)
         {
             TogglePause();
         }
