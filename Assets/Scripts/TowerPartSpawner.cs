@@ -52,12 +52,12 @@ public class TowerPartSpawner : MonoBehaviour
             reachedMax = false;
     }
 
-    public void OnReleased(TowerpartLogic topPart, bool released)
+    public void MoveUp(TowerpartLogic topPart, bool released)
     {
+        isReleased = released;
+
         if (!released)        
             return;        
-
-        isReleased = true;
 
         Vector3 pos = transform.position;
 

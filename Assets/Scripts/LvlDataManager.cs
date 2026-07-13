@@ -64,7 +64,7 @@ public class LvlDataManager : MonoBehaviour
             if (!fallingPart.GetOnFail())
             {
                 topPart = fallingPart;
-                towerPartSpawner.OnReleased(topPart, true);
+                towerPartSpawner.MoveUp(topPart, true);
 
                 if (fallingPart.GetOnPerfect())
                 {
@@ -79,7 +79,10 @@ public class LvlDataManager : MonoBehaviour
                 towerHeight++;
             }
             else
+            {
                 lifes--;
+                towerPartSpawner.MoveUp(null, false);
+            }
 
             fallingPart = null;
 
