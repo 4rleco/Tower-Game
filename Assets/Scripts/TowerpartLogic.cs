@@ -9,6 +9,8 @@ public class TowerpartLogic : MonoBehaviour
     [SerializeField] private AudioSource floorCollision;
     [SerializeField] private AudioSource partCollision;
 
+    private LvlDataManager lvlDataManager;
+
     private Rigidbody rigidbody;
     private MeshRenderer meshRenderer;
 
@@ -21,6 +23,8 @@ public class TowerpartLogic : MonoBehaviour
 
     private void Awake()
     {
+        lvlDataManager = FindFirstObjectByType<LvlDataManager>();
+
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
 
@@ -39,32 +43,39 @@ public class TowerpartLogic : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 newPos = new Vector3(collision.transform.position.x, transform.position.y, 0.0f);
+        if (isColliding)
+            return;
 
-        if (collision.gameObject.tag == "Floor")
+        isColliding = true;
+
+        Vector3 newPos = new Vector3(collision.transform.position.x, transform.position.y, 0f);
+
+        if (lvlDataManager.TopPart == null)
         {
-            tag = "Tower Top";
+            if (!collision.gameObject.CompareTag("Floor"))
+            {
+                onFail = true;
+                return;
+            }
+
             floorCollision.Play();
+            return;
         }
-        else if (collision.gameObject.tag == "Tower Top")
-        {
-            tag = collision.gameObject.tag;
-            collision.gameObject.tag = "Untagged";
 
+        if (collision.gameObject == lvlDataManager.TopPart.gameObject)
+        {
             partCollision.Play();
 
-            if (transform.position.x <= collision.transform.localScale.x / 2)
+            if (Mathf.Abs(transform.position.x - collision.transform.position.x) <= collision.transform.localScale.x / 2f)
             {
                 transform.position = newPos;
                 onPerfect = true;
             }
-        }
-        else
-        {
-            onFail = true;
+
+            return;
         }
 
-        isColliding = true;
+        onFail = true;
     }
 
     public bool GetIsSpawned()

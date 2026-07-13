@@ -21,8 +21,10 @@ public class LvlDataManager : MonoBehaviour
     private int towerHeight;
     private int perfectStreak;
 
+    private TowerpartLogic topPart;
+    public TowerpartLogic TopPart => topPart;
+
     public event Action<bool> OnGameOver;
-    public event Action<bool> OnReleased;
 
     private bool waitingForLanding;
 
@@ -54,20 +56,16 @@ public class LvlDataManager : MonoBehaviour
                 heldPart = null;
 
                 waitingForLanding = true;
-
-                OnReleased?.Invoke(true);
             }
-        }
-
-        if (fallingPart != null && fallingPart.GetOnFail())
-        {
-            lifes--;
         }
 
         if (fallingPart != null && waitingForLanding && fallingPart.GetIsColliding())
         {
             if (!fallingPart.GetOnFail())
             {
+                topPart = fallingPart;
+                towerPartSpawner.OnReleased(topPart, true);
+
                 if (fallingPart.GetOnPerfect())
                 {
                     score += lvlData[0].perfectScore;
@@ -80,15 +78,13 @@ public class LvlDataManager : MonoBehaviour
                 }
                 towerHeight++;
             }
+            else
+                lifes--;
 
             fallingPart = null;
 
             waitingForLanding = false;
-
-
-            OnReleased?.Invoke(false);
         }
-
 
         if (lifes <= 0)
         {

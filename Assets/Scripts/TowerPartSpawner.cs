@@ -16,11 +16,6 @@ public class TowerPartSpawner : MonoBehaviour
     private bool reachedMax = false;
     private bool isReleased = false;
 
-    private void Start()
-    {
-        lvlDataManager.OnReleased += OnReleased;
-    }
-
     private void Update()
     {
         if (towerPart != null)
@@ -29,21 +24,17 @@ public class TowerPartSpawner : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        lvlDataManager.OnReleased -= OnReleased;
-    }
-
     public void SpawnTowerPart(TowerpartLogic instantiatedTowerPart)
     {
         towerPart = instantiatedTowerPart;
+        towerPart.gameObject.GetComponent<Collider>().enabled = false;
         towerPart.gameObject.SetActive(true);
     }
 
     private void Movement()
     {
         maxPosX = floor.transform.localScale.x / 2 - towerPart.transform.localScale.x;
-        minPosX = -1 * (maxPosX = floor.transform.localScale.x / 2 - towerPart.transform.localScale.x);
+        minPosX = -maxPosX;
 
         if (transform.position.x <= maxPosX && !reachedMax)
             transform.position += Vector3.right * speed * Time.deltaTime;
@@ -61,12 +52,27 @@ public class TowerPartSpawner : MonoBehaviour
             reachedMax = false;
     }
 
-    private void OnReleased(bool released)
+    public void OnReleased(TowerpartLogic topPart, bool released)
     {
-        isReleased = released;
+        if (!released)        
+            return;        
 
-        if (isReleased)
-            transform.position += new Vector3(0, towerPart.Height(), 0);
+        isReleased = true;
+
+        Vector3 pos = transform.position;
+
+        if (topPart != null)
+        {
+            float topHeight = topPart.GetComponent<Collider>().bounds.max.y;
+            pos.y = topHeight + towerPart.GetComponent<Collider>().bounds.size.y / 2f;
+        }
+        else
+        {
+            float floorHeight = floor.GetComponent<Collider>().bounds.max.y;
+            pos.y = floorHeight + towerPart.GetComponent<Collider>().bounds.size.y / 2f;
+        }
+
+        transform.position = pos;
     }
 
     public TowerpartLogic GetTowerpart()
